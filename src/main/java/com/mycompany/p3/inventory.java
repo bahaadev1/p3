@@ -12,8 +12,8 @@ import java.util.ArrayList;
  */
 public class inventory {
     
-    ArrayList items = new ArrayList ();
-    ArrayList products = new ArrayList ();
+    ArrayList <Item>items = new ArrayList ();
+    ArrayList <Product>products = new ArrayList ();
 
     public ArrayList getItems() {
         return items;
@@ -31,12 +31,26 @@ public class inventory {
      
     public void removeProduct (Product e){products.remove(e);}
     
-    public void searchItem (Object e){
+    public void search (Object e){
     if (e instanceof Item)
             System.out.println(e+" is an Item ");
     else if (e instanceof Product)
             System.out.println(e+" is a Product");
     else throw new IllegalArgumentException("object must be Item or product");}
+    
+    
+    public void showInventory (){
+        System.out.println("items: ");
+    for (Item e : items){System.out.println(e);}
+        System.out.println(" products: ");
+        for (Product e :products ){System.out.println(e);}
+        }
+    
+    
+    
+    
+    
+    
     
     
 }
