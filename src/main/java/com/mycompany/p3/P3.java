@@ -27,5 +27,10 @@ public class P3 {
         catch (Exception e){System.out.println("ss");}
       
         System.out.println(i.getQuantity());
-    }
+      inventory ii = new inventory ();
+      
+      ii.addItem(i);
+     
+      Task tt= new Task();
+    ii.searchItem(tt); }
 }

@@ -96,12 +96,17 @@ public Item (){}
     
     
     // bhabha says welcome to you   
+
+    @Override
+    public String toString() {
+        return "Item{" + "number=" + number + ", name=" + name + ", category=" + category + ", price=" + price + ", quantity=" + quantity + ", minAllowed=" + minAllowed + '}';
+    }
     
     
     
     
     
-    
+     
     
     
 }
