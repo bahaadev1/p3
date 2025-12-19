@@ -5,6 +5,7 @@
 package com.mycompany.p3;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Map;
 public class Product {
     private int number;
     private String name;
-   Map <Item,Integer> requiredItem;
+   Map <Item,Integer> requiredItem = new HashMap <>();
 public Product (){}
     public Product(int number, String name) {
         this.number = number;
