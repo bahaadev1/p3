@@ -8,12 +8,6 @@ package com.mycompany.p3;
  *
  * @author bhaal
  */
-public enum Category {
- 
-    FOOD,
-    CLOTHES,
-    ELECTRONICS
-
-
-
+public enum LineStatus {
+    ACTIVE,STOPPED,MAINTENANCE
 }

@@ -93,7 +93,11 @@ public Item (){}
     }
     //codeeee
     
-    
+    public ItemStatus getStatus() {
+    if (quantity == 0) return ItemStatus.OUT_OF_STOCK;
+    if (quantity < minAllowed) return ItemStatus.BELOW_MINIMUM;
+    return ItemStatus.AVAILABLE;
+}
     
     // bhabha says welcome to you   
 

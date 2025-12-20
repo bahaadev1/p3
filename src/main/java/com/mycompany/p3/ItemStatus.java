@@ -10,4 +10,6 @@ package com.mycompany.p3;
  */
 public enum ItemStatus {
     
+    AVAILABLE,OUT_OF_STOCK,BELOW_MINIMUM
+    
 }

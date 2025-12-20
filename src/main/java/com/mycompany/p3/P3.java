@@ -4,7 +4,11 @@
 
 package com.mycompany.p3;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
@@ -14,23 +18,31 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class P3 {
 
     public static void main(String[] args)  {
-       // loginFrame login = new loginFrame();
-        //managerFrame manger = new managerFrame();
+  
+            // loginFrame login = new loginFrame();
+            //managerFrame manger = new managerFrame();
 //       Task k = new Task();
 //       k.setOrderAmount(600);
 //       k.setReadyAmount(56);
 //       k.progres();
-       Item i = new Item ();
-       i.setQuantity(500);
-        System.out.println(i.getQuantity());
-        try{ i.setQuantity(-3000);}
-        catch (Exception e){System.out.println("ss");}
-      
-        System.out.println(i.getQuantity());
-      inventory ii = new inventory ();
-      
-      ii.addItem(i);
-     
-      Task tt= new Task();
-     }
+//       Item i = new Item ();
+//       i.setQuantity(500);
+//        System.out.println(i.getQuantity());
+//        try{ i.setQuantity(-3000);}
+//        catch (Exception e){System.out.println("ss");}
+//      
+//        System.out.println(i.getQuantity());
+//      inventory ii = new inventory ();
+//      
+//      ii.addItem(i);
+//     
+   Task tt= new Task();
+tt.updateProgress(22.0);
+     tt.getProgresss();
+   tt.setNumber(55);
+        System.out.println(   tt.getNumber());
+    }
+    
+    
 }
+

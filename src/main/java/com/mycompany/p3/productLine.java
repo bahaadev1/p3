@@ -5,21 +5,42 @@
 package com.mycompany.p3;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 /**
  *
  * @author bhaal
  */
-public class productLine {
+public class ProductLine extends Thread {
     private int number;
-    private String name;
-    private String statue;
-    ArrayList tasks=new ArrayList();
-public productLine(){}
-    public productLine(int number, String name, String statue) {
+
+     private LineStatus status;
+  
+ Queue <Task> tasks ;
+   
+     
+   public ProductLine(){}
+    public ProductLine(int number, String name) {
+        super(name);
         this.number = number;
-        this.name = name;
-        this.statue = statue;
+        this.status=LineStatus.STOPPED;
+       this.tasks = new LinkedList<>() ;
+    }
+
+    public void setStatus(LineStatus status) {
+        this.status = status;
+    }
+
+        
+
+    public Queue<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Queue<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public int getNumber() {
@@ -30,26 +51,73 @@ public productLine(){}
         this.number = number;
     }
 
-    public String getName() {
-        return name;
-    }
+   
+   
+    
+    
+    
+    @Override
+public void run(){}
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getStatue() {
-        return statue;
-    }
+// اضافة مهمة
+public void addTask (Task t){
+ if (status==LineStatus.STOPPED)
+        System.out.println("line in not working");
+ if(status==LineStatus.MAINTENANCE)
+        System.out.println("line is under maintenance");
+ else{
+     tasks.add(t);
+     System.out.println("task added successfully");}
+     }
+    
+ public void cancleTask(Task t){
+ tasks.remove(t);
+     System.out.println("task removed successfully");
+ 
+ }
+ public void showLineTasks(){
+ for(Task t:tasks){
+ 
+     System.out.println(t);
+ }}
+ 
+ 
+ public void searchTask(){
+ 
+ }
+    public   List<Task>  searchTask(TaskStatus t) {
 
-    public void setStatue(String statue) {
-        this.statue = statue;
+    ArrayList<Task> result = new ArrayList<>();
+
+    for (Task t : tasks) {
+        if (t.getStatus().equals(t)) {
+            result.add(t);
+        }
     }
-    public void setTasks(ArrayList tasks) {
-        this.tasks = tasks;
-    }
-    public ArrayList getTasks() {
-        return tasks;
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
