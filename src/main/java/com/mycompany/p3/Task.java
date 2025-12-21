@@ -26,7 +26,7 @@ public class Task {
    
 public Task (){}
 
-    public Task(int number, Product product, int requiredAmount, String agent, LocalDate startDate, LocalDate deliveryDate, taskStatus status, ProductLine productline ) {
+    public Task(int number, Product product, int requiredAmount, String agent, LocalDate startDate, LocalDate deliveryDate, TaskStatus status, ProductLine productline ) {
         this.number = number;
         this.product = product;
         this.requiredAmount = requiredAmount;
@@ -112,6 +112,9 @@ public Task (){}
       return progress;
     }
 
+     //////////  تعديل نسبة الانجاز لمهمة
+     
+     
     public void updateProgress(double amount) {
        if(amount<=0)
            throw new IllegalArgumentException("invalid progress amount" );
@@ -124,6 +127,9 @@ public Task (){}
         
     }
 
+    ///////  طباعة معلومات المهمة
+    
+    
     @Override
     public String toString() {
         return "Task{" + "number=" + number + ", product=" + product + ", requiredAmount=" + requiredAmount + ", agent=" + agent + ", startDate=" + startDate + ", deliveryDate=" + deliveryDate + ", status=" + status + ", productline=" + productline + ", progress=" + progress + '}';

@@ -38,6 +38,10 @@ public Product (){}
         this.name = name;
     }
 
+    
+    
+    ///////////////  طباعة معلومات المنتج
+    
     @Override
     public String toString() {
         return "Product{" + "number=" + number + ", name=" + name + ", requiredItem=" + requiredItem + '}';

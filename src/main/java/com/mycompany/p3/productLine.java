@@ -86,17 +86,17 @@ public void addTask (Task t){
  public void searchTask(){
  
  }
-    public   List<Task>  searchTask(TaskStatus t) {
+    public   List<Task>  searchTaskByStatus(TaskStatus ts) {
 
     ArrayList<Task> result = new ArrayList<>();
 
     for (Task t : tasks) {
-        if (t.getStatus().equals(t)) {
+        if (t.getStatus()==ts) {
             result.add(t);
         }
     }
-    
-    
+      return result;
+    }
     
     
     

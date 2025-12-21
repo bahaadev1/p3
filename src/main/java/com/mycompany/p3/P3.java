@@ -38,7 +38,7 @@ public class P3 {
 //     
    Task tt= new Task();
 tt.updateProgress(22.0);
-     tt.getProgresss();
+   
    tt.setNumber(55);
         System.out.println(   tt.getNumber());
     }
