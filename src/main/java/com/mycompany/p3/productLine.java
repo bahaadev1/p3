@@ -60,7 +60,7 @@ public class ProductLine extends Thread {
 public void run(){}
 
 
-// اضافة مهمة
+/////// اضافة مهمة لخط الانتاج
 public void addTask (Task t){
  if (status==LineStatus.STOPPED)
         System.out.println("line in not working");
@@ -71,11 +71,19 @@ public void addTask (Task t){
      System.out.println("task added successfully");}
      }
     
+//////// ازالة مهمة من خط الانتاج
+
+
+
  public void cancleTask(Task t){
  tasks.remove(t);
      System.out.println("task removed successfully");
  
  }
+ 
+////////// عرض المهام التابعة لخط الانتاج 
+ 
+ 
  public void showLineTasks(){
  for(Task t:tasks){
  
@@ -83,9 +91,7 @@ public void addTask (Task t){
  }}
  
  
- public void searchTask(){
- 
- }
+ ///////////  بحث عن مهمة حسب الحالة
     public   List<Task>  searchTaskByStatus(TaskStatus ts) {
 
     ArrayList<Task> result = new ArrayList<>();

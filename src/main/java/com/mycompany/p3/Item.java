@@ -78,20 +78,29 @@ public Item (){}
     }
     
     
+    
+    
+    ////////// زيادة كمية عنصر
     public void increaseQuantity(int amount){
         if (amount <=0)
             throw new IllegalArgumentException("invalid amount");
         quantity+=amount;
     }
+    
+    ////////// انقاص كمية عنصر
     public void decreaseQuantity(int amount){
     if (amount>quantity)
             throw new IllegalArgumentException("not enough quantity" );
         quantity-=amount;
         }
+    
+    
+    ////////// التحقق من كمية عنصر اذا تحت الحد الادنى
+    
      public boolean isBelowMinimum (){
         return quantity<minAllowed;
     }
-    //codeeee
+   
     
     public ItemStatus getStatus() {
     if (quantity == 0) return ItemStatus.OUT_OF_STOCK;
@@ -99,7 +108,7 @@ public Item (){}
     return ItemStatus.AVAILABLE;
 }
     
-    // bhabha says welcome to you   
+  ///////// طباعة  معلومات العنصر الخام 
 
     @Override
     public String toString() {

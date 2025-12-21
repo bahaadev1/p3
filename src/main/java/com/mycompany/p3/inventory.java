@@ -30,18 +30,20 @@ public class inventory {
     public ArrayList getProducts() {
         return products;
     }
-     
+     ////////      اضافة و حذف عنصر خام
      public void addItem (Item e){items.add(e);}
-     
     public void removeItem (Item e){items.remove(e);}
     
+    ////////        اضافة و حذف  منتج
+    
+    
+    
     public void addProduct (Product e){products.add(e);}
-     
     public void removeProduct (Product e){products.remove(e);}
     
 
     
-    ///عرض محتويات المخزون        
+    ///////عرض محتويات المخزون        
     public void showInventory (){
         System.out.println("items: ");
     for (Item e : items){System.out.println(e);}
@@ -51,7 +53,7 @@ public class inventory {
     
         
     
-    ///search
+    /////////// البحث عن عنصر خام عن طريق الاسم
     
    
  public   List<Item>  searchItemByName(String name) {
@@ -68,7 +70,7 @@ public class inventory {
 }
  
  
-    ///search
+////////////  البحث عن عنصر خام عن طريق الفئة
  
     public   List<Item>  searchItemByCatagery(String category) {
 
@@ -82,6 +84,9 @@ public class inventory {
 
     return result;
 }
+    
+    
+    /////////////   البحث عن عنصر خام عن طريق الحالة
     
      public   List<Item>  searchItemByStatus(ItemStatus s) {
 
@@ -102,7 +107,7 @@ public class inventory {
      
      
      
-    ///search
+   /////////// البحث عن منتج حسب الاسم
     
     public   List<Product>  searchProductByName(String name) {
 
@@ -121,7 +126,7 @@ public class inventory {
     
     
     
-    
+    /////////////   حفظ محتويات المخزون الى ملف نصي
     
     
     public void saveInventoryToFile(String fileName) {
@@ -155,6 +160,8 @@ public class inventory {
     ///////////////////////////////////////////////////////
     
     
+    ////////// تعديل كمية عنصر خام عن طريق المخزون
+    
     public void updateQuantity(Item i,int amount){
        for(Item c:items){
         if (c.equals(i)){
@@ -167,6 +174,10 @@ public class inventory {
        else System.out.println("Item not found ");
        }
     }
+    
+    
+    
+    /////////////    التشييك على عنصر اذا موجود ضمن المخزون
     
      public boolean isExist(Object o){
          boolean a = false;
@@ -182,7 +193,7 @@ public class inventory {
        
        return a;
 }
-     
+     //////////  حجز كمية معينة من عنصر معين من المخزون
      
      public void reserveItem(Item i , int a){
        for ( Item e :items){
@@ -191,6 +202,10 @@ public class inventory {
            else System.out.println("Item not found");
        }
      } 
+     
+     
+     
+     ////////////   الغاء حجز عنصر من المخزون
      
       public void releaseReservedItem(Item i , int a){
        for ( Item e :items){

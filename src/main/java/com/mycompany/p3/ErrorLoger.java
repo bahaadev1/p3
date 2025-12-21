@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 /**
  *
  * @author bhaal
- */
+ */////////////////  كلاس خاص بتسجيل الاخطاء بملف نصي
 public class ErrorLoger {
     private static final String FileName = "error.txt";
     
