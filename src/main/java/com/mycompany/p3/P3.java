@@ -25,8 +25,8 @@ public class P3 {
 //       k.setOrderAmount(600);
 //       k.setReadyAmount(56);
 //       k.progres();
-//       Item i = new Item ();
-//       i.setQuantity(500);
+     Item i = new Item ();
+       i.setQuantity(0);
 //        System.out.println(i.getQuantity());
 //        try{ i.setQuantity(-3000);}
 //        catch (Exception e){System.out.println("ss");}
@@ -36,11 +36,11 @@ public class P3 {
 //      
 //      ii.addItem(i);
 //     
-   Task tt= new Task();
-tt.updateProgress(22.0);
-   
-   tt.setNumber(55);
-        System.out.println(   tt.getNumber());
+//   Task tt= new Task();
+//tt.updateProgress(22.0);
+//   
+//   tt.setNumber(55);
+//        System.out.println(   tt.getNumber());
     }
     
     

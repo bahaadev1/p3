@@ -65,7 +65,7 @@ public Item (){}
     }
 
     public void setQuantity(int quantity) {
-        if (quantity<=0) throw new IllegalArgumentException("invalid amount");
+        if (quantity<0) throw new IllegalArgumentException("invalid amount");
         this.quantity = quantity;
     }
 

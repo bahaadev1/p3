@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 /**
  *
@@ -18,28 +18,42 @@ import java.util.Scanner;
  */
 public class inventory {
     
-   ArrayList <Item>items = new ArrayList ();
-    ArrayList <Product>products = new ArrayList ();
+   private final List <Item>items = new ArrayList ();
+  private final List <Product>products = new ArrayList ();
 
     
-     Scanner input= new Scanner(System.in);
-    public ArrayList getItems() {
-        return items;
-    }
-
-    public ArrayList getProducts() {
-        return products;
-    }
+     
+//    public ArrayList getItems() {
+//        return items;
+//    }
+//
+//    public ArrayList getProducts() {
+//        return products;
+//    }
      ////////      اضافة و حذف عنصر خام
-     public void addItem (Item e){items.add(e);}
-    public void removeItem (Item e){items.remove(e);}
+     public synchronized void addItem (Item e){
+         if (items.contains(e))
+            throw new IllegalArgumentException("Item already exists" );
+         else 
+             items.add(e);}
+    public synchronized void removeItem (Item e){
+       if ( !items.remove(e))
+    throw new IllegalArgumentException("Item not found" );
+    }
     
     ////////        اضافة و حذف  منتج
     
     
     
-    public void addProduct (Product e){products.add(e);}
-    public void removeProduct (Product e){products.remove(e);}
+    public synchronized void   addProduct (Product e){
+        if (products.contains(e))
+        throw new IllegalArgumentException("product already exists" );
+        else 
+            products.add(e);}
+    public synchronized void removeProduct (Product e){ 
+    if (!products.remove(e))
+       throw new IllegalArgumentException("product not found" );
+    }
     
 
     
@@ -56,12 +70,12 @@ public class inventory {
     /////////// البحث عن عنصر خام عن طريق الاسم
     
    
- public   List<Item>  searchItemByName(String name) {
+ public  synchronized  List<Item>  searchItemByName(String name) {
 
-    ArrayList<Item> result = new ArrayList<>();
+    List<Item> result = new ArrayList<>();
 
     for (Item e : items) {
-        if (e.getName().contains(name)) {
+        if (e.getName().toLowerCase().contains(name.toLowerCase())) {
             result.add(e);
         }
     }
@@ -72,12 +86,12 @@ public class inventory {
  
 ////////////  البحث عن عنصر خام عن طريق الفئة
  
-    public   List<Item>  searchItemByCatagery(String category) {
+    public  synchronized List<Item>  searchItemByCatagery(String category) {
 
-    ArrayList<Item> result = new ArrayList<>();
+   List<Item> result = new ArrayList<>();
 
     for (Item e : items) {
-        if (e.getCategory().contains(category)) {
+        if (e.getCategory().toLowerCase().contains(category.toLowerCase())) {
             result.add(e);
         }
     }
@@ -88,9 +102,9 @@ public class inventory {
     
     /////////////   البحث عن عنصر خام عن طريق الحالة
     
-     public   List<Item>  searchItemByStatus(ItemStatus s) {
+     public  synchronized List<Item>  searchItemByStatus(ItemStatus s) {
 
-    ArrayList<Item> result = new ArrayList<>();
+    List<Item> result = new ArrayList<>();
 
     for (Item e : items) {
         if (e.getStatus()==s) {
@@ -109,12 +123,12 @@ public class inventory {
      
    /////////// البحث عن منتج حسب الاسم
     
-    public   List<Product>  searchProductByName(String name) {
+    public  synchronized List<Product>  searchProductByName(String name) {
 
-    ArrayList<Product> result = new ArrayList<>();
+    List<Product> result = new ArrayList<>();
 
     for (Product e : products) {
-        if (e.getName().contains(name)) {
+        if (e.getName().toLowerCase().contains(name.toLowerCase())) {
             result.add(e);
         }
     }
@@ -162,57 +176,71 @@ public class inventory {
     
     ////////// تعديل كمية عنصر خام عن طريق المخزون
     
-    public void updateQuantity(Item i,int amount){
-       for(Item c:items){
-        if (c.equals(i)){
-        System.out.println("enter '1' to  increase or '0' to decrease ");
-        
-        int a = input.nextInt();
-        switch (a){case 1 :c.increaseQuantity(amount);System.out.println("added successfuly");
-        case 0 :c.decreaseQuantity(amount);System.out.println("removed successfuly");}
-        } 
-       else System.out.println("Item not found ");
-       }
-    }
-    
+//    public void updateQuantity(Item i,int amount){
+//       for(Item c:items){
+//        if (c.equals(i)){
+//        System.out.println("enter '1' to  increase or '0' to decrease ");
+//        
+//        int a = 1;
+//        switch (a){case 1 :c.increaseQuantity(amount);System.out.println("added successfuly");break;
+//        case 0 :c.decreaseQuantity(amount);System.out.println("removed successfuly");break;}
+//        } 
+//       else System.out.println("Item not found ");
+//       }
+//    }
+//    
     
     
     /////////////    التشييك على عنصر اذا موجود ضمن المخزون
     
-     public boolean isExist(Object o){
-         boolean a = false;
-       for(Item c:items){
-        if (c.equals(o)){
-       a=true;
-       }
-    else{
-       for (Product e : products){
-           if (e.equals(o))
-               a=true;}}
-        }
-       
-       return a;
+//     public boolean isExist(Object o){
+//         boolean a = false;
+//       for(Item c:items){
+//        if (c.equals(o)){
+//       a=true;
+//       }
+//    else{
+//       for (Product e : products){
+//           if (e.equals(o))
+//               a=true;}}
+//        }
+//       
+//       return a;
+//}
+     
+     ///////// تشييك اذا الكمية المطلوبة موجودة
+     public synchronized boolean isAvailable(Item i, int amount) {
+    if (!items.contains(i))
+        throw new IllegalArgumentException("Item not found");
+
+    return i.getQuantity() >= amount;
 }
+     
+     
+     
+     
      //////////  حجز كمية معينة من عنصر معين من المخزون
      
-     public void reserveItem(Item i , int a){
-       for ( Item e :items){
-           if (e.equals(i))
-           i.decreaseQuantity(a);
-           else System.out.println("Item not found");
-       }
+     public synchronized void reserveItem(Item i , int amount){
+       
+           if (!isAvailable(i,amount))
+               throw new IllegalArgumentException("not enough stock");
+           else 
+               i.decreaseQuantity(amount);
+          
+       
      } 
      
      
      
      ////////////   الغاء حجز عنصر من المخزون
      
-      public void releaseReservedItem(Item i , int a){
-       for ( Item e :items){
-           if (e.equals(i))
-           i.increaseQuantity(a);
-           else System.out.println("Item not found");
-       }
+      public synchronized void releaseReservedItem(Item i , int amount){
+      
+           if (!items.contains(i))
+               throw new IllegalArgumentException("Item not found");
+           else i.increaseQuantity(amount);
+       
      } 
      
      
