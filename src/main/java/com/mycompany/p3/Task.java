@@ -4,6 +4,7 @@
  */
 package com.mycompany.p3;
 
+import static com.mycompany.p3.TaskStatus.RUNNING;
 import java.time.LocalDate;
 
 /**
@@ -106,27 +107,29 @@ public Task (){}
     public double getCompletedOrder() {
         return progress*requiredAmount/100;
     }
-
-    
      public double getProgress() {
       return progress;
     }
 
      //////////  تعديل نسبة الانجاز لمهمة
-     
-     
+
     public void updateProgress(double amount) {
        if(amount<=0)
            throw new IllegalArgumentException("invalid progress amount" );
       else  progress +=amount;
-        
-       
        if (progress>=100){
            progress=100;
             status=TaskStatus.COMPLETED;}
         
     }
-
+    public  void startTask (int deliveryDate) {
+       setStatus(RUNNING);
+       setStartDate (LocalDate.now());
+       setDeliveryDate(LocalDate.now().plusDays(deliveryDate));
+    }
+    
+    
+    
     ///////  طباعة معلومات المهمة
     
     

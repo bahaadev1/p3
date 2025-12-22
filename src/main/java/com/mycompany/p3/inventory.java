@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 /**
@@ -221,7 +222,7 @@ public class inventory {
      
      //////////  حجز كمية معينة من عنصر معين من المخزون
      
-     public synchronized void reserveItem(Item i , int amount){
+     public   synchronized void reserveItem(Item i , int amount){
        
            if (!isAvailable(i,amount))
                throw new IllegalArgumentException("not enough stock");
@@ -242,6 +243,25 @@ public class inventory {
            else i.increaseQuantity(amount);
        
      } 
+     
+     
+     /////////      حجز كمية مطلوبة لانتاج عدد معين من المنتجات
+     
+     
+     public synchronized void consumeProduct(Product product, int quantity) {
+
+    Map<Item, Integer> required = product.getRequiredItems();
+
+    for (Item i : required.keySet()) {
+
+        int amountPerUnit = required.get(i);
+        int totalAmount = amountPerUnit * quantity;
+
+        reserveItem(i, totalAmount);
+    }
+}
+     
+     
      
      
      

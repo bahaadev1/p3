@@ -40,6 +40,44 @@ public Product (){}
 
     
     
+    /////// اضافة عناصر المطلوبة للمنتج
+    
+    public void addRequiredItem(Item item, int amount) {
+    if (item == null)
+        throw new IllegalArgumentException("Item is null");
+
+    if (amount <= 0)
+        throw new IllegalArgumentException("Invalid amount");
+else
+    requiredItem.put(item, amount);
+}
+    //////////  ازالة عناصر من منتج
+    
+    public void removeRequiredItem(Item item) {
+    if (!requiredItem.containsKey(item))
+        throw new IllegalArgumentException("Item not found in product");
+else
+    requiredItem.remove(item);
+}
+    
+    
+    
+    //////////  المواد المطلوبة
+    public Map<Item, Integer> getRequiredItems() {
+    return new HashMap<>(requiredItem);
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     ///////////////  طباعة معلومات المنتج
     
     @Override
@@ -48,16 +86,6 @@ public Product (){}
     }
     
         
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
     
 }
