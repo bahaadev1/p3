@@ -9,6 +9,6 @@ package com.mycompany.p3;
  * @author bhaal
  */
 public enum TaskStatus {
-    COMPLETED,RUNNING,CANCELLED
+    COMPLETED,RUNNING,CANCELLED,PINDING
     
 }

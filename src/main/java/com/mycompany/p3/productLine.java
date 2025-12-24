@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.p3;
-
+import static com.mycompany.p3.LineStatus.ACTIVE;
+import static com.mycompany.p3.LineStatus.STOPPED;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,13 +18,14 @@ public class ProductLine extends Thread {
     private int number;
     private LineStatus status;
     Queue <Task> tasks ;
-   
+    inventory inventory;
 public ProductLine(){}
   public ProductLine(int number, String name) {
         super(name);
         this.number = number;
         this.status=LineStatus.STOPPED;
        this.tasks = new LinkedList<>() ;
+       inventory = new inventory();
     }
     public void setStatus(LineStatus status) {
         this.status = status;
@@ -99,19 +101,26 @@ public void addTask (Task t){
     
      @Override
 public void run(){
+setStatus(ACTIVE);
+    while(!tasks.isEmpty()){
+     Task t = tasks.poll( );
+   System.out.println("working on task");
+   
+       try{
+           inventory.consumeProduct(t.getProduct(), t.getRequiredAmount());
+           t.startTask();
+       while (t.getProgress()<100){
+           Thread.sleep(2500);
+       t.updateProgress(10);}
+       
+       
+       }catch(Exception e){
+       t.setStatus(TaskStatus.CANCELLED);   ErrorLoger.log(e);}
+   }
+   setStatus(STOPPED);
+    }
 
-    if (!tasks.isEmpty())
-     throw new IllegalArgumentException(" there is no tasks in prouduct line ");
-    else {for (Task t :tasks){
-    
-    
-    
-    
-    
-    
-    
-    
-    }}
+}
 
 
 

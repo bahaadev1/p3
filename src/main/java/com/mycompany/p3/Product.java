@@ -15,11 +15,13 @@ import java.util.Map;
 public class Product {
     private int number;
     private String name;
-   Map <Item,Integer> requiredItem = new HashMap <>();
+   Map <Item,Integer> requiredItem  = new HashMap <>();
 public Product (){}
-    public Product(int number, String name) {
+    public Product(int number, String name,Map<Item, Integer> requiredItem) {
         this.number = number;
         this.name = name;
+       this.requiredItem = requiredItem;
+    
     }
 
     public int getNumber() {
@@ -82,7 +84,8 @@ else
     
     @Override
     public String toString() {
-        return "Product{" + "number=" + number + ", name=" + name + ", requiredItem=" + requiredItem + '}';
+        return "Product{" + "number=" + number + ", name=" + name + 
+                ", requiredItem=" + requiredItem + '}';
     }
     
         

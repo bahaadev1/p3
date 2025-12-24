@@ -112,7 +112,10 @@ public Item (){}
 
     @Override
     public String toString() {
-        return "Item{" + "number=" + number + ", name=" + name + ", category=" + category + ", price=" + price + ", quantity=" + quantity + ", minAllowed=" + minAllowed + '}';
+        return "Item{" + "number=" + number +
+                ", name=" + name + ", category=" + category
+                + ", price=" + price + ", quantity=" + quantity
+                + ", minAllowed=" + minAllowed + '}';
     }
     
     

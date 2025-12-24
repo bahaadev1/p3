@@ -15,7 +15,7 @@ public class Task {
     private int number;
     private Product product ;
     private int requiredAmount;
-    private String agent;
+    private String agentName;
     private LocalDate startDate;
     private LocalDate deliveryDate;
     private TaskStatus status;
@@ -27,15 +27,13 @@ public class Task {
    
 public Task (){}
 
-    public Task(int number, Product product, int requiredAmount, String agent, LocalDate startDate, LocalDate deliveryDate, TaskStatus status, ProductLine productline ) {
+    public Task(int number, Product product, int requiredAmount, String agentName, ProductLine productline ) {
         this.number = number;
         this.product = product;
         this.requiredAmount = requiredAmount;
-        this.agent = agent;
-        this.startDate = startDate;
-        this.deliveryDate = deliveryDate;
-        this.status=status;
+        this.agentName = agentName;
         this.productline = productline;
+        this.status=TaskStatus.PINDING;
         this.progress=0;
         
     }
@@ -64,12 +62,12 @@ public Task (){}
         this.requiredAmount = requiredAmount;
     }
 
-    public String getAgent() {
-        return agent;
+    public String getAgentName() {
+        return agentName;
     }
 
-    public void setAgent(String agent) {
-        this.agent = agent;
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
     }
 
     public LocalDate getStartDate() {
@@ -120,12 +118,12 @@ public Task (){}
        if (progress>=100){
            progress=100;
             status=TaskStatus.COMPLETED;}
-        
+         setDeliveryDate(LocalDate.now());
     }
-    public  void startTask (int deliveryDate) {
+    public  void startTask ( ) {
        setStatus(RUNNING);
        setStartDate (LocalDate.now());
-       setDeliveryDate(LocalDate.now().plusDays(deliveryDate));
+       
     }
     
     
@@ -135,7 +133,11 @@ public Task (){}
     
     @Override
     public String toString() {
-        return "Task{" + "number=" + number + ", product=" + product + ", requiredAmount=" + requiredAmount + ", agent=" + agent + ", startDate=" + startDate + ", deliveryDate=" + deliveryDate + ", status=" + status + ", productline=" + productline + ", progress=" + progress + '}';
+        return "Task{" + "number=" + number + ", product=" + product 
+                + ", requiredAmount=" + requiredAmount + ", agent=" + agentName
+                + ", startDate=" + startDate + ", deliveryDate=" + deliveryDate
+                + ", status=" + status + ", productline=" + productline 
+                + ", progress=" + progress + '}';
     }
 
    
